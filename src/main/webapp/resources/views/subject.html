@@ -1,0 +1,21 @@
+<div>
+	<div class="row">
+		<md-button class="md-raised md-primary pull-right" id="border-shadow-blue" ng-click="open()">Add</md-button>
+	</div>
+	<div class="row">
+		<table class="table table-bordered" style="margin-top: 1em;">
+			<thead>
+				<tr>
+					<th class="col-md-2">Subject Id</th>
+					<th>Subject Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="subject in subjects">
+					<th>{{subject.subjectId}}</th>
+					<td>{{subject.subjectName}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

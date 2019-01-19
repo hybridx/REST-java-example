@@ -1,0 +1,8 @@
+com\deepesh\dao\StudentDao.class
+com\deepesh\service\StudentService.class
+com\deepesh\bo\StudentBo.class
+com\deepesh\bean\StudentBean.class
+com\deepesh\bo\SubjectBo.class
+com\deepesh\service\SubjectService.class
+com\deepesh\dao\SubjectDao.class
+com\deepesh\bean\SubjectBean.class

@@ -1,0 +1,34 @@
+.grids{
+	margin: auto;
+	width: 70%;
+	margin-top: 5em;
+}
+#formLink{
+	text-align: center;
+}
+#tableBorder{
+	background: #ddd;
+}
+.modal-header {
+  text-align: center;
+}
+tableDark > thead > tr > th > td{
+  border:1px solid blue;
+}
+#modalElement{
+	margin-top: 2em;
+	margin: auto;
+	width: 80%;
+}
+.middle-container{
+	margin: auto;
+	width: 50%;
+}
+td > a {
+	display: block;
+	width: 100%;
+}
+#border-shadow-blue {
+	margin-top: 1em; 
+	box-shadow: 5px 5px #e2e3ff;
+}

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://cxf.apache.org/jaxrs
+ 	http://cxf.apache.org/schemas/jaxrs.xsd
+ 	http://cxf.apache.org/jaxws
+ 	http://cxf.apache.org/schemas/jaxws.xsd
+ 	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+ 	
+ 	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	
+	<!-- jaxrs server configuration -->
+	<context:component-scan base-package="com.deepesh.*" />
+	
+	<!-- Service end point for student -->
+	<jaxrs:server id="ServicesStudent" address="/student">
+		<jaxrs:providers>
+			<ref bean="jsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="studentServiceImpl" />
+			<!-- <ref bean="subjectServiceImpl" /> -->
+		</jaxrs:serviceBeans>
+	</jaxrs:server>
+	
+	<!-- Service end point for subject -->
+	<jaxrs:server id="ServicesSubject" address="/subject">
+		<jaxrs:providers>
+			<ref bean="jsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<!-- <ref bean="studentServiceImpl" /> -->
+			<ref bean="subjectServiceImpl" />
+		</jaxrs:serviceBeans>
+	</jaxrs:server>
+	
+	<!-- Service end point for marks -->
+	<jaxrs:server id="ServicesMarks" address="/marks">
+		<jaxrs:providers>
+			<ref bean="jsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="marksServiceImpl" />
+			<!-- <ref bean="subjectServiceImpl" /> -->
+		</jaxrs:serviceBeans>
+	</jaxrs:server>
+	
+	
+	<!-- bean definitions -->
+	
+	<!-- bean definitions for student -->
+	<bean id="studentServiceImpl" class="com.deepesh.service.StudentService">
+		<property name="studentBo" ref="studentBo" />
+	</bean>
+	
+	<bean id="studentDao" class="com.deepesh.dao.StudentDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryStudent" />
+	</bean>
+
+	<bean id="studentBo" class="com.deepesh.bo.StudentBo">
+		<property name="studentDao" ref="studentDao" />
+	</bean>
+	
+	
+	
+	
+	
+	<!-- bean definitions for subject -->
+	
+	<bean id="subjectServiceImpl" class="com.deepesh.service.SubjectService">
+		<property name="subjectBo" ref="subjectBo" />
+	</bean>
+	
+	<bean id="subjectDao" class="com.deepesh.dao.SubjectDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactorySubject" />
+	</bean>
+	
+	<bean id="subjectBo" class="com.deepesh.bo.SubjectBo">
+		<property name="subjectDao" ref="subjectDao" />
+	</bean>
+	
+	
+	
+	
+	
+	<!-- bean definitions for marks -->
+	
+	<bean id="marksServiceImpl" class="com.deepesh.service.MarksService">
+		<property name="marksBo" ref="marksBo" />
+	</bean>
+	
+	<bean id="marksDoa" class="com.deepesh.dao.MarksDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryMarks" />
+	</bean>
+
+	<bean id="marksBo" class="com.deepesh.bo.MarksBo">
+		<property name="marksDoa" ref="marksDoa" />
+	</bean>
+	
+	
+	
+	
+	<!-- database configuration -->
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost/deepesh?createDatabaseIfNotExist=true" />
+		<property name="username" value="root" />
+		<property name="password" value="omniscient" />
+	</bean>
+	
+	
+	
+	
+	<!-- liquibase integration -->
+	<bean id="studentLiquibase" class="liquibase.integration.spring.SpringLiquibase">
+		<property name="dataSource" ref="dataSource" />
+		<property name="changeLog" value="/WEB-INF/db-changelog.xml" />
+	</bean>
+	
+	
+	
+	
+	<!-- SqlSessionFactory Beans -->
+	<bean id="sqlSessionFactoryStudent" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="/WEB-INF/studentConfig.xml" />
+	</bean>
+	
+	<bean id="sqlSessionFactorySubject" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="/WEB-INF/subjectConfig.xml" />
+	</bean>
+	
+	<bean id="sqlSessionFactoryMarks" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="/WEB-INF/marksConfig.xml" />
+	</bean>
+	
+ 	</beans>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd 
+http://www.liquibase.org/xml/ns/dbchangelog-ext 
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<changeSet id = "1" author="deepesh">
+    
+    <createTable tableName="students">
+    
+    	<column name="roll_no" type="int(11)">
+        	<constraints primaryKey="true" unique="true" /> 
+    	</column>
+    
+    	<column name="name" type="varchar(255)">
+    		<constraints nullable="false"/>
+   		</column>
+   		
+   	 </createTable> 	 
+   	 
+   	 <createTable tableName="subjects">
+    
+    	<column name="subject_id" type="int(11)">
+        	<constraints primaryKey="true" unique="true" /> 
+    	</column>
+    
+    	<column name="subject_name" type="varchar(255)">
+    		<constraints nullable="false"/>
+   		</column>
+   		
+   	 </createTable>
+   	   	 
+   	 <createTable tableName="student_subject_marks">
+    
+    	<column name="roll_no" type="INT">
+        	<constraints nullable="false"/>
+    	</column>
+    
+    	<column name="subject_id" type="INT">
+        	<constraints nullable="false"/>
+    	</column>
+    
+    	<column name="marks" type="INT">
+        	<constraints nullable="false"/>
+    	</column>
+    	
+		
+    </createTable>
+    
+     	<addForeignKeyConstraint baseColumnNames="roll_no" 
+    	baseTableName="student_subject_marks" 
+    	constraintName="student _subject_marks_ibfk_1" 
+    	deferrable="false" initiallyDeferred="false" onDelete="CASCADE" 
+    	onUpdate="CASCADE" referencedColumnNames="roll_no" 
+    	referencedTableName="students"/>
+    	
+    	<addForeignKeyConstraint baseColumnNames="subject_id" 
+    	baseTableName="student_subject_marks" 
+    	constraintName="stud ent_subject_marks_ibfk_2" 
+    	deferrable="false" initiallyDeferred="false" 
+    	onDelete="CASCADE" onUpdate="CASCADE" 
+    	referencedColumnNames="subject_id" referencedTableName="subjects"/>
+    	
+    	 
+</changeSet>    
+    
+</databaseChangeLog>

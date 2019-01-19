@@ -1,0 +1,52 @@
+<div class="container">
+<div class="middle-container">
+	<div class="row">
+		<button class="pull-right btn btn-warning col-md-2" ng-click="cancel()" style="margin-top: 1em;">
+			< Back
+		</button>
+	</div>
+	<div class="form-group">
+		<form ng-submit="postData()">
+			<div class="form-group row" id="modalElement" style="margin-top: 2em;">
+				<label class="col-sm-2 col-form-label">Student</label>
+				<div class="col-sm-10">
+					<select name="Student" class="form-control"
+					ng-model="markStudent"
+					ng-options="student.name for student in students" 
+					required>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row" id="modalElement" style="margin-top: 2em;">
+				<label class="col-sm-2 col-form-label">Subject</label>
+				<div class="col-sm-10">
+					<select name="Subject" class="form-control" 
+					ng-model="markSubject"
+					ng-options="subject.subjectName for subject in subjects" 
+					required>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row" id="modalElement" style="margin-top: 2em;">
+				<label class="col-sm-2 col-form-label">Year</label>
+				<div class="col-sm-10">
+					<md-datepicker ng-model="marks.date" 
+					md-placeholder="Enter date" required></md-datepicker>
+				</div>
+			</div>
+			<div class="form-group row" id="modalElement" style="margin-top: 2em;">
+				<label class="col-sm-2 col-form-label">Marks</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" 
+					min=0 placeholder="Marks" ng-model="mark" required>
+				</div>
+			</div>
+			<div class="row">
+				<input type="submit" class="btn btn-primary" 
+				style="margin-top: 2em; margin-left: 12em; box-shadow: 5px 5px #cbd9e6;" 
+				value="Save">
+			</div>
+		</form>
+		</div>
+	</div>
+</div>

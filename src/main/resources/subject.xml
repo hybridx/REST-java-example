@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.deepesh.bean.SubjectBean">
+ 
+    <resultMap id="result" type="com.deepesh.bean.SubjectBean">
+        <result property="subjectId" column="subject_id"/>
+        <result property="subjectName" column="subject_name"/>    
+    </resultMap>
+ 
+    <select id="getAll" resultMap="result">
+        SELECT * FROM subjects;
+    </select>
+ 
+ 
+    <insert id="insert" parameterType="com.deepesh.bean.SubjectBean" 
+    useGeneratedKeys="true" keyProperty="">
+        INSERT INTO subjects (subject_id,subject_name) 
+        VALUES (#{subjectId},#{subjectName});
+    </insert>
+    
+</mapper>

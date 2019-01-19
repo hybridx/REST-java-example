@@ -1,0 +1,32 @@
+<div>
+	<div class="row">
+		<md-button class="pull-right md-primary md-raised col-md-2" 
+		ng-click="showAdvanced($event)" id="border-shadow-blue">
+      		Add
+    	</md-button>
+	</div>
+	{{ status }}
+	<div class="row">
+		<table class="table table-bordered" style="margin-top: 1em;">
+			<thead>
+				<tr>
+					<th class="col-md-1">Roll No</th>
+					<th class="col-md-3">Name</th>
+					<th class="col-md-1">Subject Id</th>
+					<th class="col-md-3">Subject Name</th>
+					<th class="col-md-2">Marks</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in marksData">
+					<th>{{data.rollNo}}</th>
+					<td>{{data.name}}</td>
+					<td>{{data.subjectId}}</td>
+					<td>{{data.subjectName}}</td>
+					<td>{{data.marks}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

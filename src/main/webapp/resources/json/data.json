@@ -1,0 +1,21 @@
+{
+   "students":
+   [
+   {
+      "name": "John",
+      "rollNo": 100
+   },
+   {
+      "name": "Smith",
+      "rollNo": 101
+   },
+   {
+      "name": "Cena",
+      "rollNo": 102
+   },
+   {
+      "name": "Shawn",
+      "rollNo": 103
+   } 
+]
+}

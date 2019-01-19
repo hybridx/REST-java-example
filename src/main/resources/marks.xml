@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.deepesh.bean.MarksBean">
+ 
+    <resultMap id="result" type="com.deepesh.bean.MarksBean">
+        <result property="rollNo" column="roll_no"/>
+        <result property="subjectId" column="subject_id"/> 
+        <result property="marks" column="marks"/>
+        <result property="name" column="name"/>
+        <result property="subjectName" column="subject_name"/> 
+    </resultMap>
+ 
+    <select id="getAll" resultMap="result">
+        select * from 
+        students,subjects,student_subject_marks 
+        where students.roll_no=student_subject_marks.roll_no 
+        and 
+        subjects.subject_id=student_subject_marks.subject_id;
+    </select>
+ 
+ 
+    <insert id="insert" parameterType="com.deepesh.bean.MarksBean"
+    useGeneratedKeys="true" keyProperty="">
+    insert into student_subject_marks (roll_no,subject_id,marks) values 
+    (#{rollNo},#{subjectId},#{marks});
+    </insert>
+
+    
+</mapper>
